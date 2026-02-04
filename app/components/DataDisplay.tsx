@@ -45,7 +45,7 @@ export default function DataDisplay() {
     try {
       setLoading(true);
       setError(null);
-      const response = await fetch('http://localhost:8000/api/data');
+      const response = await fetch('http://localhost:8001/api/data');
       
       if (!response.ok) {
         throw new Error(`Failed to fetch data: ${response.statusText}`);
