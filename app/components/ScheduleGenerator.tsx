@@ -18,10 +18,8 @@ export default function ScheduleGenerator({
   const [taskId, setTaskId] = useState<string | null>(null)
   const pollingInterval = useRef<NodeJS.Timeout | null>(null)
 
-  // const API_BASE_URL = "http://localhost:8000"
   const API_BASE_URL = "http://localhost:8001"
 
-  // Clean up polling on unmount
   useEffect(() => {
     return () => {
       if (pollingInterval.current) {
