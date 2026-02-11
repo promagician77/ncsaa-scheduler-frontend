@@ -1,80 +1,59 @@
 'use client';
 
 import { useState } from 'react';
-import ScheduleGenerator from './components/ScheduleGenerator';
-import ScheduleDisplay from './components/ScheduleDisplay';
-import DataDisplay from './components/DataDisplay';
+import { Tabs } from '@/app/components/ui';
+import ScheduleGenerator from './components/schedule/ScheduleGenerator';
+import ScheduleDisplay from './components/schedule/ScheduleDisplay';
+import DataDisplay from './components/data/DataDisplay';
+import type { ScheduleData } from './types';
 
 export default function Home() {
-  const [schedule, setSchedule] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [schedule, setSchedule] = useState<ScheduleData | null>(null);
   const [activeView, setActiveView] = useState<'schedule' | 'info'>('schedule');
 
+  const tabs = [
+    { id: 'schedule', label: 'Schedule', icon: '📅' },
+    { id: 'info', label: 'Information', icon: 'ℹ️' },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800">
+      <div className="container mx-auto px-4 py-8 max-w-7xl">
         {/* Header */}
-        <header className="mb-8 text-center">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-            NCSAA Basketball Scheduling System
-          </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
-            Generate and view optimized basketball game schedules
+        <header className="mb-10 text-center animate-slide-in-top">
+          <div className="inline-block mb-4">
+            <div className="flex items-center justify-center space-x-3">
+              <div className="text-5xl">🏀</div>
+              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
+                NCSAA Basketball Scheduler
+              </h1>
+            </div>
+          </div>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Generate and view optimized basketball game schedules with intelligent constraint solving
           </p>
         </header>
 
-        {/* View Toggle */}
-        <div className="mb-6 flex justify-center">
-          <div className="inline-flex rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-1 shadow-sm">
-            <button
-              onClick={() => setActiveView('schedule')}
-              className={`
-                px-6 py-2 rounded-md text-sm font-medium transition-colors
-                ${activeView === 'schedule'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
-                }
-              `}
-            >
-              📅 Schedule
-            </button>
-            <button
-              onClick={() => setActiveView('info')}
-              className={`
-                px-6 py-2 rounded-md text-sm font-medium transition-colors
-                ${activeView === 'info'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
-                }
-              `}
-            >
-              ℹ️ Information
-            </button>
-          </div>
+        {/* Tab Navigation */}
+        <div className="mb-8 flex justify-center animate-slide-in-bottom">
+          <Tabs tabs={tabs} activeTab={activeView} onChange={(id) => setActiveView(id as 'schedule' | 'info')} />
         </div>
 
-        {/* Schedule View */}
+        {/* Content */}
         {activeView === 'schedule' && (
-          <>
-            {/* Schedule Generator */}
-            <ScheduleGenerator 
-              onScheduleGenerated={setSchedule}
-              isLoading={isLoading}
-              setIsLoading={setIsLoading}
-            />
-
-            {/* Schedule Display */}
-            {schedule && !isLoading && (
-              <ScheduleDisplay schedule={schedule} />
-            )}
-          </>
+          <div className="space-y-6">
+            <ScheduleGenerator onScheduleGenerated={setSchedule} />
+            {schedule && <ScheduleDisplay schedule={schedule} />}
+          </div>
         )}
-
-        {/* Information View */}
-        {activeView === 'info' && (
-          <DataDisplay />
-        )}
+        
+        {activeView === 'info' && <DataDisplay />}
       </div>
+
+      {/* Footer */}
+      <footer className="mt-16 py-6 text-center text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700">
+        <p>NCSAA Basketball Scheduling System &copy; 2025</p>
+      </footer>
     </div>
   );
 }
