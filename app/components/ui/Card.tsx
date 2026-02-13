@@ -1,5 +1,5 @@
 /**
- * Reusable Card component
+ * Reusable Card component with glassmorphism
  */
 
 import React from 'react';
@@ -23,9 +23,9 @@ export function Card({ children, className, padding = 'md', hover = false }: Car
   return (
     <div
       className={cn(
-        'bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700',
+        'glass rounded-2xl shadow-sm border border-white/30 dark:border-white/5',
         paddingStyles[padding],
-        hover && 'transition-shadow hover:shadow-xl',
+        hover && 'transition-all duration-300 hover:shadow-md hover:-translate-y-0.5',
         className
       )}
     >
@@ -44,7 +44,7 @@ export function CardHeader({ children, className }: { children: React.ReactNode;
 
 export function CardTitle({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <h2 className={cn('text-2xl font-semibold text-gray-900 dark:text-white', className)}>
+    <h2 className={cn('text-2xl font-semibold text-gray-800 dark:text-gray-100 tracking-tight', className)}>
       {children}
     </h2>
   );
@@ -52,7 +52,7 @@ export function CardTitle({ children, className }: { children: React.ReactNode; 
 
 export function CardDescription({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <p className={cn('text-gray-600 dark:text-gray-300 mt-1', className)}>
+    <p className={cn('text-gray-500 dark:text-gray-400 mt-1.5 font-light leading-relaxed', className)}>
       {children}
     </p>
   );

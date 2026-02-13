@@ -1,5 +1,5 @@
 /**
- * Reusable Alert component for errors and notifications
+ * Reusable Alert component with gentle styling
  */
 
 import React from 'react';
@@ -16,27 +16,27 @@ interface AlertProps {
 export function Alert({ variant = 'info', title, children, className, onClose }: AlertProps) {
   const variantStyles = {
     info: {
-      container: 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',
+      container: 'bg-blue-50/70 dark:bg-blue-900/15 border-blue-200/60 dark:border-blue-800/40',
       title: 'text-blue-800 dark:text-blue-200',
-      text: 'text-blue-600 dark:text-blue-300',
+      text: 'text-blue-600/90 dark:text-blue-300/90',
       icon: '💡',
     },
     success: {
-      container: 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800',
-      title: 'text-green-800 dark:text-green-200',
-      text: 'text-green-600 dark:text-green-300',
+      container: 'bg-emerald-50/70 dark:bg-emerald-900/15 border-emerald-200/60 dark:border-emerald-800/40',
+      title: 'text-emerald-800 dark:text-emerald-200',
+      text: 'text-emerald-600/90 dark:text-emerald-300/90',
       icon: '✓',
     },
     warning: {
-      container: 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800',
-      title: 'text-yellow-800 dark:text-yellow-200',
-      text: 'text-yellow-600 dark:text-yellow-300',
+      container: 'bg-amber-50/70 dark:bg-amber-900/15 border-amber-200/60 dark:border-amber-800/40',
+      title: 'text-amber-800 dark:text-amber-200',
+      text: 'text-amber-600/90 dark:text-amber-300/90',
       icon: '⚠️',
     },
     error: {
-      container: 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800',
+      container: 'bg-red-50/70 dark:bg-red-900/15 border-red-200/60 dark:border-red-800/40',
       title: 'text-red-800 dark:text-red-200',
-      text: 'text-red-600 dark:text-red-300',
+      text: 'text-red-600/90 dark:text-red-300/90',
       icon: '✕',
     },
   };
@@ -44,7 +44,7 @@ export function Alert({ variant = 'info', title, children, className, onClose }:
   const styles = variantStyles[variant];
 
   return (
-    <div className={cn('relative p-4 border rounded-lg', styles.container, className)}>
+    <div className={cn('relative p-4 border rounded-xl backdrop-blur-sm', styles.container, className)}>
       <div className="flex items-start">
         <span className="text-xl mr-3 flex-shrink-0">{styles.icon}</span>
         <div className="flex-1">
@@ -60,7 +60,7 @@ export function Alert({ variant = 'info', title, children, className, onClose }:
         {onClose && (
           <button
             onClick={onClose}
-            className={cn('ml-3 flex-shrink-0 hover:opacity-70', styles.text)}
+            className={cn('ml-3 flex-shrink-0 hover:opacity-60 transition-opacity', styles.text)}
             aria-label="Close"
           >
             ✕

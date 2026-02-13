@@ -1,5 +1,5 @@
 /**
- * Reusable Button component with variants
+ * Reusable Button component with soft variants
  */
 
 import React from 'react';
@@ -21,17 +21,17 @@ export function Button({
   children,
   ...props
 }: ButtonProps) {
-  const baseStyles = 'inline-flex items-center justify-center rounded-lg font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles = 'inline-flex items-center justify-center rounded-xl font-medium transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed';
   
   const variantStyles = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 active:scale-95 shadow-sm hover:shadow-md',
-    secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600',
-    ghost: 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800',
-    danger: 'bg-red-600 text-white hover:bg-red-700 active:scale-95 shadow-sm hover:shadow-md',
+    primary: 'bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 active:scale-[0.97] shadow-sm shadow-amber-200/50 hover:shadow-md hover:shadow-amber-200/60 dark:shadow-amber-900/20',
+    secondary: 'bg-white/60 dark:bg-gray-700/60 text-gray-700 dark:text-gray-200 hover:bg-white/80 dark:hover:bg-gray-600/70 backdrop-blur-sm border border-gray-200/50 dark:border-gray-600/50',
+    ghost: 'text-gray-600 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-gray-700/50 backdrop-blur-sm',
+    danger: 'bg-gradient-to-r from-red-400 to-rose-500 text-white hover:from-red-500 hover:to-rose-600 active:scale-[0.97] shadow-sm shadow-red-200/50 hover:shadow-md',
   };
 
   const sizeStyles = {
-    sm: 'px-3 py-1.5 text-sm',
+    sm: 'px-4 py-1.5 text-sm',
     md: 'px-6 py-2.5 text-base',
     lg: 'px-8 py-3 text-lg',
   };

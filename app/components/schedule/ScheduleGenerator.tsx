@@ -42,7 +42,7 @@ export default function ScheduleGenerator({ onScheduleGenerated }: ScheduleGener
       {progress && isLoading && (
         <Alert variant="info" className="mt-6">
           <p className="font-medium">Progress:</p>
-          <p>{progress}</p>
+          <p className="font-light">{progress}</p>
         </Alert>
       )}
 

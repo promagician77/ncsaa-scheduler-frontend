@@ -27,7 +27,7 @@ export default function ScheduleDisplay({ schedule }: ScheduleDisplayProps) {
   const gamesByDate = useMemo(() => groupGamesByDate(filteredGames), [filteredGames]);
 
   return (
-    <div className="space-y-6 animate-in">
+    <div className="space-y-8 animate-in">
       {/* Stats Section */}
       <ScheduleStats schedule={schedule} />
 
@@ -38,13 +38,13 @@ export default function ScheduleDisplay({ schedule }: ScheduleDisplayProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Division Filter */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
               Division
             </label>
             <select
               value={selectedDivision}
               onChange={(e) => setSelectedDivision(e.target.value)}
-              className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full px-4 py-2.5 border border-white/40 dark:border-gray-600/40 rounded-xl bg-white/60 dark:bg-gray-700/50 text-gray-800 dark:text-white focus:ring-2 focus:ring-amber-400/50 focus:border-transparent transition-all backdrop-blur-sm"
             >
               {divisions.map((div) => (
                 <option key={div} value={div}>
@@ -56,13 +56,13 @@ export default function ScheduleDisplay({ schedule }: ScheduleDisplayProps) {
 
           {/* Date Filter */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
               Date
             </label>
             <select
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full px-4 py-2.5 border border-white/40 dark:border-gray-600/40 rounded-xl bg-white/60 dark:bg-gray-700/50 text-gray-800 dark:text-white focus:ring-2 focus:ring-amber-400/50 focus:border-transparent transition-all backdrop-blur-sm"
             >
               {dates.map((date) => {
                 if (date === 'all') {
@@ -85,7 +85,7 @@ export default function ScheduleDisplay({ schedule }: ScheduleDisplayProps) {
 
           {/* Search */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">
               Search
             </label>
             <input
@@ -93,14 +93,14 @@ export default function ScheduleDisplay({ schedule }: ScheduleDisplayProps) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Team or facility..."
-              className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              className="w-full px-4 py-2.5 border border-white/40 dark:border-gray-600/40 rounded-xl bg-white/60 dark:bg-gray-700/50 text-gray-800 dark:text-white placeholder-gray-400/70 focus:ring-2 focus:ring-amber-400/50 focus:border-transparent transition-all backdrop-blur-sm"
             />
           </div>
         </div>
 
-        <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-          Showing <span className="font-semibold">{filteredGames.length}</span> of{' '}
-          <span className="font-semibold">{schedule.total_games}</span> games
+        <div className="mt-4 text-sm text-gray-500 dark:text-gray-400 font-light">
+          Showing <span className="font-medium">{filteredGames.length}</span> of{' '}
+          <span className="font-medium">{schedule.total_games}</span> games
         </div>
       </Card>
 
@@ -110,8 +110,8 @@ export default function ScheduleDisplay({ schedule }: ScheduleDisplayProps) {
           .sort()
           .map((date) => (
             <Card key={date} padding="none" className="overflow-hidden">
-              <div className="px-6 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+              <div className="px-6 py-4 bg-gradient-to-r from-amber-50/60 to-orange-50/60 dark:from-amber-900/10 dark:to-orange-900/10 border-b border-white/30 dark:border-gray-700/40">
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
                   {(() => {
                     const firstGame = gamesByDate[date][0];
                     const dayName = firstGame?.day || '';
@@ -126,8 +126,8 @@ export default function ScheduleDisplay({ schedule }: ScheduleDisplayProps) {
               </div>
 
               <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                  <thead className="bg-gray-50 dark:bg-gray-900">
+                <table className="min-w-full divide-y divide-gray-200/50 dark:divide-gray-700/40">
+                  <thead className="bg-white/30 dark:bg-gray-800/30">
                     <tr>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                         Facility
@@ -149,7 +149,7 @@ export default function ScheduleDisplay({ schedule }: ScheduleDisplayProps) {
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                  <tbody className="bg-white/20 dark:bg-gray-800/20 divide-y divide-gray-200/30 dark:divide-gray-700/30">
                     {gamesByDate[date].map((game, idx) => {
                       const prevGame = idx > 0 ? gamesByDate[date][idx - 1] : null;
                       const isNewCourt = !prevGame || prevGame.facility !== game.facility;
@@ -157,14 +157,14 @@ export default function ScheduleDisplay({ schedule }: ScheduleDisplayProps) {
                       return (
                         <tr
                           key={game.id}
-                          className={`transition-colors hover:bg-gray-50 dark:hover:bg-gray-700 ${
-                            isNewCourt ? 'border-t-2 border-blue-500' : ''
+                          className={`transition-colors duration-200 hover:bg-amber-50/30 dark:hover:bg-amber-900/10 ${
+                            isNewCourt ? 'border-t-2 border-amber-400/40' : ''
                           }`}
                         >
-                          <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">
+                          <td className="px-6 py-4 text-sm font-medium text-gray-800 dark:text-gray-100">
                             {game.facility}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900 dark:text-white">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800 dark:text-gray-100">
                             {game.time}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
@@ -172,13 +172,13 @@ export default function ScheduleDisplay({ schedule }: ScheduleDisplayProps) {
                               {game.division}
                             </Badge>
                           </td>
-                          <td className="px-6 py-4 text-sm text-gray-900 dark:text-white font-medium">
+                          <td className="px-6 py-4 text-sm text-gray-800 dark:text-gray-100 font-medium">
                             {game.home_team}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-center text-xs font-semibold text-gray-400 dark:text-gray-500">
+                          <td className="px-6 py-4 whitespace-nowrap text-center text-xs font-medium text-gray-400/70 dark:text-gray-500/70">
                             VS
                           </td>
-                          <td className="px-6 py-4 text-sm text-gray-900 dark:text-white font-medium">
+                          <td className="px-6 py-4 text-sm text-gray-800 dark:text-gray-100 font-medium">
                             {game.away_team}
                           </td>
                         </tr>
@@ -192,7 +192,7 @@ export default function ScheduleDisplay({ schedule }: ScheduleDisplayProps) {
 
         {filteredGames.length === 0 && (
           <Card className="text-center py-12">
-            <p className="text-gray-500 dark:text-gray-400 text-lg">
+            <p className="text-gray-500/80 dark:text-gray-400/80 text-lg font-light">
               No games found matching your filters
             </p>
           </Card>

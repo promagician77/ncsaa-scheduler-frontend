@@ -1,5 +1,5 @@
 /**
- * Reusable Spinner/Loading component
+ * Reusable Spinner/Loading component with gentle styling
  */
 
 import React from 'react';
@@ -20,13 +20,13 @@ export function Spinner({ size = 'md', className }: SpinnerProps) {
 
   return (
     <svg
-      className={cn('animate-spin text-blue-600', sizeStyles[size], className)}
+      className={cn('animate-spin text-amber-500', sizeStyles[size], className)}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
     >
       <circle
-        className="opacity-25"
+        className="opacity-20"
         cx="12"
         cy="12"
         r="10"
@@ -51,7 +51,7 @@ export function Loading({ message = 'Loading...', className }: LoadingProps) {
   return (
     <div className={cn('flex flex-col items-center justify-center p-8', className)}>
       <Spinner size="lg" />
-      <p className="mt-4 text-gray-600 dark:text-gray-400">{message}</p>
+      <p className="mt-4 text-gray-500 dark:text-gray-400 font-light">{message}</p>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 /**
- * Reusable Tab component
+ * Reusable Tab component with gentle styling
  */
 
 import React from 'react';
@@ -20,16 +20,16 @@ interface TabsProps {
 
 export function Tabs({ tabs, activeTab, onChange, className }: TabsProps) {
   return (
-    <div className={cn('inline-flex rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-1 shadow-sm', className)}>
+    <div className={cn('inline-flex rounded-2xl glass p-1.5 shadow-sm', className)}>
       {tabs.map((tab) => (
         <button
           key={tab.id}
           onClick={() => onChange(tab.id)}
           className={cn(
-            'px-6 py-2 rounded-md text-sm font-medium transition-all duration-200',
+            'px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-300',
             activeTab === tab.id
-              ? 'bg-blue-600 text-white shadow-sm'
-              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+              ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-sm shadow-amber-200/40'
+              : 'text-gray-600 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-gray-700/50'
           )}
         >
           {tab.icon && <span className="mr-2">{tab.icon}</span>}
@@ -51,7 +51,7 @@ export function TabPanel({ value, activeValue, children, className }: TabPanelPr
   if (value !== activeValue) return null;
 
   return (
-    <div className={cn('animate-in fade-in duration-200', className)}>
+    <div className={cn('animate-in fade-in duration-300', className)}>
       {children}
     </div>
   );

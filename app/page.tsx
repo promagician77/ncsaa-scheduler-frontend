@@ -17,31 +17,31 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800">
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
+    <div className="min-h-screen bg-image-overlay">
+      <div className="container mx-auto px-4 py-10 max-w-7xl relative z-10">
         {/* Header */}
-        <header className="mb-10 text-center animate-slide-in-top">
-          <div className="inline-block mb-4">
-            <div className="flex items-center justify-center space-x-3">
-              <div className="text-5xl">🏀</div>
-              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
+        <header className="mb-12 text-center animate-slide-in-top">
+          <div className="inline-block mb-5">
+            <div className="flex items-center justify-center space-x-4">
+              <div className="text-5xl animate-gentle-float">🏀</div>
+              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-amber-700 via-orange-600 to-rose-500 dark:from-amber-400 dark:via-orange-400 dark:to-rose-400 bg-clip-text text-transparent tracking-tight">
                 NCSAA Basketball Scheduler
               </h1>
             </div>
           </div>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600/90 dark:text-gray-300/90 max-w-2xl mx-auto font-light leading-relaxed">
             Generate and view optimized basketball game schedules with intelligent constraint solving
           </p>
         </header>
 
         {/* Tab Navigation */}
-        <div className="mb-8 flex justify-center animate-slide-in-bottom">
+        <div className="mb-10 flex justify-center animate-slide-in-bottom">
           <Tabs tabs={tabs} activeTab={activeView} onChange={(id) => setActiveView(id as 'schedule' | 'info')} />
         </div>
 
         {/* Content */}
         {activeView === 'schedule' && (
-          <div className="space-y-6">
+          <div className="space-y-8">
             <ScheduleGenerator onScheduleGenerated={setSchedule} />
             {schedule && <ScheduleDisplay schedule={schedule} />}
           </div>
@@ -51,8 +51,10 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="mt-16 py-6 text-center text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700">
-        <p>NCSAA Basketball Scheduling System &copy; 2025</p>
+      <footer className="relative z-10 mt-20 py-8 text-center text-sm text-gray-500/80 dark:text-gray-400/80">
+        <div className="glass-subtle max-w-md mx-auto rounded-full py-3 px-6">
+          <p className="font-light">NCSAA Basketball Scheduling System &copy; 2025</p>
+        </div>
       </footer>
     </div>
   );
